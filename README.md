@@ -1,2 +1,2 @@
 # Analisis-Numerico-para-Ingenieria
-Homeworks from ANPI curse at Tecnologico de Costa Rica 
+Homeworks from ANPI course at Tecnologico de Costa Rica 
