@@ -18,6 +18,7 @@ def tolerancia (m):
     denominador=factorial(m+1)*(2*(m+1)+1)
     tolAux=numerador/denominador
     return tolAux
+
 def factorial (num):
     result=1
     while (num>1):
