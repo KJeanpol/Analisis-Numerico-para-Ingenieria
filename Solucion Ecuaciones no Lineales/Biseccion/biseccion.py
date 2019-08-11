@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Editor de Spyder
-
-Este es un archivo temporal.
-"""
-
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy
@@ -35,5 +28,11 @@ def biseccion(funcion,x0,x1,tol):
     else:
         return "No existe raíz"
     
-    
- 
+def graficar(funcion,a,b,iteraciones):
+    x = range(a, b)
+    itera=range(1,iteraciones)
+    plt.plot(x, [evaluar(funcion,i) for i in itera], label='Metodo de Biseccion')
+    plt.legend()
+    plt.xlabel('Iteraciones')
+    plt.ylabel('| f(X) |')
+    plt.show()
