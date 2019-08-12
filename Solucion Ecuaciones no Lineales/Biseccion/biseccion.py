@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sympy
 
-
 def evaluar(funcion,varx):
     x,y,z = sympy.symbols ('x y z')
     y=sympy.sympify(funcion).subs(x,varx)
