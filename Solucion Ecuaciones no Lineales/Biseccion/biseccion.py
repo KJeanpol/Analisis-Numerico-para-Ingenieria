@@ -49,7 +49,7 @@ def evaluar(funcion,varx):
 
 def error(a,b,k):
     
-    """Formúla que da el error en el método de la Falsa Posicion
+    """Formúla que da el error en el método de Bisección
 
     Devuelve el valor del error en una iteración específica del
     método de la Falsa Posicion
