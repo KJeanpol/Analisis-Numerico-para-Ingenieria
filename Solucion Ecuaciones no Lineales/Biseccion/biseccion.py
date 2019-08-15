@@ -2,15 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sympy
 
-def evaluar(funcion,varx):
-    x,y,z = sympy.symbols ('x y z')
-    y=sympy.sympify(funcion).subs(x,varx)
-    return float(y)
-
-def error(a,b,k):
-    return (b-a)/2**k
-
 def biseccion(funcion,x0,x1,tol):
+    
+    """Resuelve una ecuación no lineal mediante el método de la Biseccion.
+
+    Devuelve el valor de la raíz más aproximada según la tolerancia dada
+    en un intervalo [x0,x1]
+
+    Parámetros:
+    funcion -- Funcion dependiente de X, a cálcular su raíz
+    x0      -- Primer valor del intervalo a resolver
+    x1      -- Segundo valor del intervalo a resolver
+    tol     -- Tolerancia miníma aceptada para encontrar la raíz
+   
+    """    
     xr=x0
     a=x0
     b=x1
@@ -26,12 +31,35 @@ def biseccion(funcion,x0,x1,tol):
         return (x0+x1)/2
     else:
         return "No existe raíz"
+
+def evaluar(funcion,varx):
+    """Evalúa una función dependiente de X, dado un valor.
+
+    Devuelve el valor de la función correspondiente, al susituir
+    su variable independiente X, por un valor 
+
+    Parámetros:
+    funcion   -- Funcion dependiente de X, a encontrar su valor
+    varx      -- Valor de la variable X, a sustituir en la función dada
+   
+    """    
+    x,y,z = sympy.symbols ('x y z') #Define x,y,z como variables de una funcion
+    y=sympy.sympify(funcion).subs(x,varx) #Evalua la funcion, indicado su variable y valor respectivo
+    return float(y)
+
+def error(a,b,k):
     
-def graficar(funcion,a,b,iteraciones):
-    x = range(a, b)
-    itera=range(1,iteraciones)
-    plt.plot(x, [evaluar(funcion,i) for i in itera], label='Metodo de Biseccion')
-    plt.legend()
-    plt.xlabel('Iteraciones')
-    plt.ylabel('| f(X) |')
-    plt.show()
+    """Formúla que da el error en el método de la Falsa Posicion
+
+    Devuelve el valor del error en una iteración específica del
+    método de la Falsa Posicion
+
+    Parámetros:
+    a     -- Primer valor del intervalo dado
+    b     -- Segundo valor del intervalo dado
+    k     -- Valor la iteración en la que se encuentra
+   
+    """ 
+    
+    return (b-a)/2**k
+
