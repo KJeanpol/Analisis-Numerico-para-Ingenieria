@@ -1,6 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy
+from sympy import symbols, Eq, solve
+
+def evaluarXY(funcion,varx,vary):
+    x,y,z = sympy.symbols ('x y z') 
+    Fxy=sympy.sympify(funcion).subs({x:varx, y:vary})
+    return float(Fxy)
 
 
 def evaluar(funcion,varx):
@@ -18,7 +24,35 @@ def evaluar(funcion,varx):
     y=sympy.sympify(funcion).subs(x,varx) #Evalua la funcion, indicado su variable y valor respectivo
     return float(y)
 
+def evaluarX(funcion,varx):
+    """Evalúa una función dependiente de X, dado un valor.
 
+    Devuelve el valor de la función correspondiente, al susituir
+    su variable independiente X, por un valor 
+
+    Parámetros:
+    funcion   -- Funcion dependiente de X, a encontrar su valor
+    varx      -- Valor de la variable X, a sustituir en la función dada
+   
+    """    
+    x,y,z = sympy.symbols ('x y z') #Define x,y,z como variables de una funcion
+    x=sympy.sympify(funcion).subs(x,varx) #Evalua la funcion, indicado su variable y valor respectivo
+    return x
+
+def evaluarY(funcion,varx):
+    """Evalúa una función dependiente de X, dado un valor.
+
+    Devuelve el valor de la función correspondiente, al susituir
+    su variable independiente X, por un valor 
+
+    Parámetros:
+    funcion   -- Funcion dependiente de X, a encontrar su valor
+    varx      -- Valor de la variable X, a sustituir en la función dada
+   
+    """    
+    x,y,z = sympy.symbols ('x y z') #Define x,y,z como variables de una funcion
+    y=sympy.sympify(funcion).subs(y,varx) #Evalua la funcion, indicado su variable y valor respectivo
+    return y
 
 def calDerivada(funcion):
     """Determina la derivada de una función dependiente de X.
@@ -30,8 +64,24 @@ def calDerivada(funcion):
    
     """  
     x,y,z = sympy.symbols ('x y z')  #Define x,y,z como variables de una funcion
-    y=sympy.sympify(funcion) #Convierte el string funcion, a tipo Fucnion
-    return y.diff(x)   #diff= utilizado para derivar la funcion, respecto a X
+    Fdx=sympy.sympify(funcion) #Convierte el string funcion, a tipo Fucnion
+    return Fdx.diff(x)   #diff= utilizado para derivar la funcion, respecto a X
+
+
+
+def calDerivadaY(funcion):
+    """Determina la derivada de una función dependiente de X.
+
+    Devuelve el valor de la función derivada respecto a X
+
+    Parámetros:
+    funcion   -- Funcion dependiente de X, a derivar
+   
+    """  
+    x,y,z = sympy.symbols ('x y z')  #Define x,y,z como variables de una funcion
+    Fdy=sympy.sympify(funcion) #Convierte el string funcion, a tipo Fucnion
+    return Fdy.diff(y)   #diff= utilizado para derivar la funcion, respecto a X
+
 
 def error(funcion,xk):
     """Formúla que da el error en el método de la Falsa Posicion
@@ -65,3 +115,18 @@ def graficar(listaX,listaY,nombre):
     plt.ylabel('|f(Xaprox)|')
     plt.grid(True)
     plt.show()
+    
+    
+def argminX(funcion):
+    x, y = symbols('x y')
+    fdx=calDerivada(funcion)
+    eq2 = Eq(fdx)
+    sol = solve(eq2,x)
+    return (float(sol[0]))
+
+def argminY(funcion):
+    x, y = symbols('x y')
+    fdx=calDerivadaY(funcion)
+    eq2 = Eq(fdx)
+    sol = solve(eq2,y)
+    return (float(sol[0]))
