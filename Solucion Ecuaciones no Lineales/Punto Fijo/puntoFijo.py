@@ -1,40 +1,26 @@
-# -*- coding: utf-8 -*-
-import numpy as np
-import matplotlib.pyplot as plt
-import sympy
+import sys
+sys.path.append('../../')
+import general as g
 
-variable = list()
-def evaluar(funcion,varx):
-    x,y,z = sympy.symbols ('x y z')
-    y=sympy.sympify(funcion).subs(x,varx)
-    #print (float(y))
-    return float(y)
 
-def graficar(funcion,x0,x1,tol):
-    iteraciones=secante(funcion,x0,x1,tol)
-    var=0
-    x=list()
-    y=list()
-    while (var<iteraciones):
-        x.append(var)
-        var= var+1
+def puntofijo(funcion,funciong,x0,tol):
+    """Resuelve una ecuación no lineal mediante el método del Punto Fijo.
 
-    plt.plot(x,variable,'ro')
-    plt.plot(x,variable,label='Metodo de Secante')
-    plt.legend()
-    plt.xlabel('Iteraciones')
-    plt.ylabel('| f(X) |')
-    plt.show()
+    Devuelve el valor de la raíz más aproximada según la tolerancia dada
+    y el valor inicial especificado
 
-def error(x1,x):
-    return (x1-x)/x1
-
-def puntofijo(funcion,x0,tol):
+    Parámetros:
+    funcion -- Funcion dependiente de X, a cálcular su raíz
+    funciong -- Es el parametro funcion, despejada
+    x0      -- Valor inical dado a resolver
+    tol     -- Tolerancia miníma aceptada para encontrar la raíz
+   
+    Probado con: puntofijo("(sin(x)-x)","(sin(x))",2,0.001)
+    """   
     xk=x0
-    i=5
-    while(i>0):
-        xk=evaluar(funcion,xk)
-        i-=1
-        print (xk)
-    return xk
-
+    if((abs(g.evaluar(g.calDerivada(funciong),xk)))<1):
+        while(abs(g.evaluar(funcion,xk))>tol):
+            xk=g.evaluar(funciong,xk)
+        return xk
+    else:
+        print ("El metodo no converge con la funcion g(x) dada")

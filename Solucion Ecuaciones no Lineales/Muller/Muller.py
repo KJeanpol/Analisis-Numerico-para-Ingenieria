@@ -7,17 +7,20 @@ sys.path.append('../../')
 import general as g
 
 def Muller(funcion,x0,x1,x2,tol):
-    """Resuelve una ecuación no lineal mediante el método de Newton-Raphson.
+    """Resuelve una ecuación no lineal mediante el método de Muller.
 
     Devuelve el valor de la raíz más aproximada según la tolerancia dada
-    uno valor inicial x
+    y considerando tres aproximaciones iniciales.
 
     Parámetros:
     funcion -- Funcion dependiente de X, a cálcular su raíz
-    x0      -- Valor inicial dado
+    x0      -- Primer valor inical dado a resolver
+    x1      -- Segundo valor inical dado a resolver
+    x2      -- Tercer valor inical dado a resolver
     tol     -- Tolerancia miníma aceptada para encontrar la raíz
    
-    """ 
+    Probado con: Muller("(sin(x))-(x/2)",2,2.2,1.8,0.001)
+    """   
     A=getA(funcion,x0,x1,x2)
     B=getB(funcion,x0,x1,x2)
     C=getC(funcion,x2)
@@ -63,5 +66,5 @@ def getC(funcion,x2):
 def getXk(A,B,C,x2):
     data=pow(B,2)-(4*A*C)
     raiz = B*(math.sqrt(abs(data)))
-    xk= x2 - ((-2*C)/(B+raiz))  #Como hago el mas menos B ?
+    xk= x2 - ((-2*C)/(B+raiz))
     return xk

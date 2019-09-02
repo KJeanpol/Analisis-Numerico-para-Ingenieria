@@ -21,8 +21,8 @@ def evaluar(funcion,varx):
    
     """    
     x,y,z = sympy.symbols ('x y z') #Define x,y,z como variables de una funcion
-    y=sympy.sympify(funcion).subs(x,varx) #Evalua la funcion, indicado su variable y valor respectivo
-    return float(y)
+    fx=sympy.sympify(funcion).subs(x,varx) #Evalua la funcion, indicado su variable y valor respectivo
+    return float(fx)
 
 def evaluarX(funcion,varx):
     """Evalúa una función dependiente de X, dado un valor.
@@ -95,6 +95,19 @@ def error(funcion,xk):
    
     """   
     return evaluar(funcion,xk)
+
+def errorRelativo(xn,xn1):
+    """Formúla que da el error en el método de la Falsa Posicion
+
+    Devuelve el valor del error en una iteración específica del
+    método de la Falsa Posicion
+
+    Parámetros:
+    x1     -- Valor anterior de la iteración
+    x      -- Valor siguiente de la iteración
+   
+    """   
+    return ((xn1-xn)/xn1)
 
 def imprimirResultado(iteraciones,valorAprox):
     print ("Numero de iteraciones que se utilizaron para aproximar el cero : " + str(iteraciones+1))
