@@ -41,12 +41,14 @@ def Muller(funcion,x0,x1,x2,tol):
         k+=1
         listaX.append(k)
         listaY.append(xr)
+        print (A)
     g.imprimirResultado(listaX[-1],listaY[-1])
     return g.graficar(listaX,listaY,"Muller")
 
 def getA(funcion,x0,x1,x2): 
     numerador = (x1-x2)*(g.evaluar(funcion,x0)-g.evaluar(funcion,x2)) - (x0-x2)*(g.evaluar(funcion,x1)-g.evaluar(funcion,x2))
     denominador= int((x0-x2)*(x1-x2)*(x0-x1))
+    print("Prueba: " + str(denominador))
     if (abs(denominador)==0):
         return True
     else:
